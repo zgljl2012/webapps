@@ -1,6 +1,10 @@
 <ion-view title="历史">
     <ion-content>
-        历史
+        <ion-list>
+            <ion-item ng-repeat="item in missions">
+                <label class="fs12">{{item.work}}</label><span class="fr fs08 lh18">{{ item.endTime }}</span>
+            </ion-item>
+        </ion-list>
     </ion-content>
 
 

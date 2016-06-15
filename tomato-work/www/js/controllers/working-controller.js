@@ -3,9 +3,10 @@
  */
 angular.module('working-controller',[])
     .controller('WorkingCtrl',['$scope', 'localStorageService', '$interval','$ionicPopup',
-        function($scope, localStorageService,$interval,$ionicPopup){
+        'dataService',
+        function($scope, localStorageService,$interval,$ionicPopup,dataService){
             var missions = localStorageService.get("missions");
-            $scope.missions = missions;
+            $scope.missions = dataService.find(missions,{status:0});
             $scope.tomato = {
                 m:0,
                 s:0,
@@ -46,7 +47,19 @@ angular.module('working-controller',[])
                         popup.then(function(res){
                             $scope.restart();
                             if(res){
-                                console.log('1');
+                                $scope.missions[0].status = 2;
+                                var missions = localStorageService.get("missions");
+                                for(var i in missions) {
+                                    if(missions[i].timestamp === $scope.missions[0].timestamp) {
+                                        missions[i].status = 2;
+                                        var now = new Date(); 
+                                        var nowStr = now.format("yyyy-MM-dd hh:mm:ss");
+                                        missions[i].endTime= nowStr;
+                                    }
+                                }
+                                localStorageService.set("missions",missions);
+                                $scope.missions = dataService.find(missions,{status:0});
+                                console.log($scope.missions)
                             }
                         });
                     }

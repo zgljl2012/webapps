@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic','ngCordova','starter.controllers','LocalStorageModule'])
+var app = angular.module('starter', ['ionic','ngCordova','starter.controllers','LocalStorageModule'])
     .run(function($ionicPlatform, $cordovaSQLite) {
         $ionicPlatform.ready(function() {
             if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -19,6 +19,28 @@ angular.module('starter', ['ionic','ngCordova','starter.controllers','LocalStora
             if(window.StatusBar) {
               StatusBar.styleDefault();
             }
+            Date.prototype.format = function(format){ 
+                var o = { 
+                "M+" : this.getMonth()+1, //month 
+                "d+" : this.getDate(), //day 
+                "h+" : this.getHours(), //hour 
+                "m+" : this.getMinutes(), //minute 
+                "s+" : this.getSeconds(), //second 
+                "q+" : Math.floor((this.getMonth()+3)/3), //quarter 
+                "S" : this.getMilliseconds() //millisecond 
+                } 
+
+                if(/(y+)/.test(format)) { 
+                    format = format.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+                } 
+
+                for(var k in o) { 
+                    if(new RegExp("("+ k +")").test(format)) { 
+                        format = format.replace(RegExp.$1, RegExp.$1.length==1 ? o[k] : ("00"+ o[k]).substr((""+ o[k]).length)); 
+                    } 
+                } 
+                return format; 
+            };
 //            var db = $cordovaSQLite.openDB({ name: "my.db" });
 //            $cordovaSQLite.execute(db, 
 //                "CREATE TABLE IF NOT EXISTS missions "+

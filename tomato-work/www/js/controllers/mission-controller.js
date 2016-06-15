@@ -18,7 +18,9 @@ angular.module('mission-controller',[])
                  * timestamp：加入时间戳
                  * status：0-刚创建，1-进行中，2-已完成
                  */
-                var mission = {work:work,timestamp:new Date(),status:0};
+                var now = new Date(); 
+                var nowStr = now.format("yyyy-MM-dd hh:mm:ss"); 
+                var mission = {work:work,timestamp:nowStr,status:0};
                 missions.push(mission);
                 localStorageService.set("missions", missions);
                 var popup = $ionicPopup.alert({

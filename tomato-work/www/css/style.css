@@ -20,7 +20,7 @@ App基本样式
 .fs06{font-size:0.6em;} .fs08{font-size:0.8em;} .fs20{font-size:2.0em;} .fs25{font-size:2.5em;}
 .cp{cursor:pointer;}
 .vm{vertical-align: middle;}
-.lh15{line-height:1.5;}.lh14{line-height: 1.428571429;} lh22{line-height:2.222222;}
+.lh15{line-height:1.5;}.lh14{line-height: 1.428571429;} .lh18{line-height:1.8;} .lh22{line-height:2.222222;} 
 .w100{width:100%;} .w80{width:80%;} .w90{width:90%;}
 
 /******************************
@@ -47,6 +47,7 @@ APP组件库
 .clock-parent {
     height:4em;
     margin-top:0.5em;
+    text-align: center;
 }
 .clock {
     background:#ffffff;
